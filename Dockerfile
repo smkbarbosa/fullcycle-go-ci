@@ -1,7 +1,7 @@
 FROM golang:1.14-alpine as builder
 
 WORKDIR /go/src/codeedu-go-ci
-COPY ./src/codeedu-go-ci/soma.go .
+COPY ./src/codeedu-go-ci/soma* .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w -extldflags "-static"' -o soma
 RUN ls
 
