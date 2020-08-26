@@ -1,11 +1,13 @@
-FROM golang:1.14-alpine as builder
+FROM golang:1.14.6-alpine3.12 AS build
 
-WORKDIR /go/src/codeedu-go-ci
-COPY ./src/codeedu-go-ci/soma* .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w -extldflags "-static"' -o soma
-RUN ls
+WORKDIR $GOPATH/go/src/app
+
+COPY /src/codeedu-go-ci .
+
+RUN CGO_ENABLED=0 go build -o /app soma.go
 
 FROM scratch
-COPY --from=builder  /go/src/codeedu-go-ci .
 
-CMD [ "./soma" ]
+COPY --from=build /app /app
+
+CMD ["/app"]
