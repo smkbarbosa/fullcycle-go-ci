@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-func mainTest(t *testing.T) {
+func TestSoma(t *testing.T) {
 	result := soma(5, 5)
 	expected := 10
 
