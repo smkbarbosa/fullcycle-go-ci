@@ -1,13 +1,17 @@
 steps:
+  - id: "Rodando docker-compose"
+    name: 'gcr.io/$PROJECT_ID/docker-compose:1.25.5'
+    args: ['-f','docker-compose.cloudbuild.yml','up','-d']
+
   - id: "Install"
     name: "gcr.io/cloud-builders/go"
-    args: ["install", "soma"]
+    args: ["version"]
     env: ["GOPATH=."]
 
   - id: "Test"
     name: "gcr.io/cloud-builders/go"
-    args: ["test", "soma"]
-    env: ["GOPATH=."]
+    args: ["test", "./codeedu-go-ci"]
+    env: ["GOPATH=/codeedu-go-ci"]
 
   - id: "Build"
     name: "gcr.io/cloud-builders/docker"
