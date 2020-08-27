@@ -11,7 +11,7 @@ steps:
   - id: "Test"
     name: "gcr.io/cloud-builders/go"
     args: ["test"]
-    env: ["GOPATH=."]
+    env: ["GOPATH=codeedu-go-ci"]
 
   - id: "Build"
     name: "gcr.io/cloud-builders/docker"
