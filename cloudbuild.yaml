@@ -10,7 +10,7 @@ steps:
 
   - id: 'go_test'
     name: "gcr.io/cloud-builders/go"
-    args: ["test","./codeedu-go-ci"]
+    args: ["test","codeedu-go-ci"]
     env: ["GOPATH=./codeedu-go-ci"]
 
   - id: "Build"
